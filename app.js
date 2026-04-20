@@ -51,6 +51,8 @@
       comingSoon: 'Site complet — Bientôt',
       navHome: 'Accueil', navAbout: 'À propos', navStream: 'Stream',
       navGallery: 'Galerie', navSocial: 'Réseaux', navFaq: 'FAQ',
+      navHomeShort: 'Accueil', navAboutShort: 'Moi', navStreamShort: 'Stream',
+      navGalleryShort: 'Photos', navSocialShort: 'Liens', navFaqShort: 'FAQ',
       aboutLabel: 'À propos',
       aboutTitle: 'Une parisienne au Tejo',
       aboutP1: "Née à Paris, j'ai troqué le ciel gris du périphérique pour la lumière du Tage il y a quelques mois. Mannequin haute couture de formation, créatrice numérique par passion : je partage la mode, la vie portugaise et quelques escapades dorées.",
@@ -58,10 +60,8 @@
       streamLabel: 'Twitch',
       streamTitle: 'Live en français',
       streamLead: "Stream lifestyle depuis Lisbonne — mode, discussions, moments authentiques. Abonne-toi pour ne rien manquer.",
-      streamStatus: 'Prochain live programmé',
-      streamNext: "Découverte de l'Alfama — caméra, café & papotages",
-      streamTime: 'Jeudi · 20h30 (heure de Lisbonne)',
-      streamCta: 'Voir la chaîne',
+      streamStatus: 'Suis la chaîne pour être notifié',
+      streamCta: 'Voir la chaîne Twitch',
       galleryLabel: 'Galerie',
       galleryTitle: 'Moments golden hour',
       galleryLead: 'Aperçus de Lisbonne, shootings mode et coulisses du quotidien. Les clichés complets suivent le lancement officiel du site.',
@@ -88,17 +88,17 @@
       comingSoon: 'Full site — Coming soon',
       navHome: 'Home', navAbout: 'About', navStream: 'Stream',
       navGallery: 'Gallery', navSocial: 'Socials', navFaq: 'FAQ',
+      navHomeShort: 'Home', navAboutShort: 'Me', navStreamShort: 'Stream',
+      navGalleryShort: 'Photos', navSocialShort: 'Links', navFaqShort: 'FAQ',
       aboutLabel: 'About',
       aboutTitle: 'A Parisian on the Tagus',
       aboutP1: "Born in Paris, I traded the grey ring-road skies for the Tagus light a few months ago. Haute couture model by training, digital creator by passion: I share fashion, Portuguese life and a few golden escapades.",
       aboutP2: "On Twitch I stream in French — lifestyle, collabs, talk-show. On Instagram and Threads, golden-hour aesthetics every day. Come say hi.",
       streamLabel: 'Twitch',
       streamTitle: 'Live in French',
-      streamLead: 'Lifestyle stream from Lisbon — fashion, conversations, authentic moments. Subscribe so you don\'t miss anything.',
-      streamStatus: 'Next live scheduled',
-      streamNext: 'Discovering Alfama — camera, coffee & chat',
-      streamTime: 'Thursday · 8:30 PM (Lisbon time)',
-      streamCta: 'Visit the channel',
+      streamLead: 'Lifestyle stream from Lisbon — fashion, conversations, authentic moments. Subscribe to get notified.',
+      streamStatus: 'Follow the channel to get notified',
+      streamCta: 'Visit the Twitch channel',
       galleryLabel: 'Gallery',
       galleryTitle: 'Golden hour moments',
       galleryLead: 'Glimpses of Lisbon, fashion shoots and daily behind-the-scenes. Full shots will follow the official site launch.',
@@ -121,8 +121,10 @@
 
   function applyLang(lang) {
     const dict = I18N[lang] || I18N.fr;
+    const isMobile = window.matchMedia('(max-width: 720px)').matches;
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
-      const k = el.getAttribute('data-i18n');
+      const kMobile = el.getAttribute('data-i18n-mobile');
+      const k = (isMobile && kMobile && dict[kMobile]) ? kMobile : el.getAttribute('data-i18n');
       if (dict[k]) el.textContent = dict[k];
     });
     document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
@@ -147,6 +149,19 @@
     b.addEventListener('click', function () { applyLang(b.getAttribute('data-lang')); });
   });
 
+  // Re-appliquer les labels quand le viewport change (rotation mobile / resize desktop)
+  let lastIsMobile = window.matchMedia('(max-width: 720px)').matches;
+  window.addEventListener('resize', function () {
+    const nowMobile = window.matchMedia('(max-width: 720px)').matches;
+    if (nowMobile !== lastIsMobile) {
+      lastIsMobile = nowMobile;
+      const saved = (function () {
+        try { return localStorage.getItem('zia.lang') || (document.documentElement.lang || 'fr'); } catch (e) { return 'fr'; }
+      })();
+      applyLang(saved);
+    }
+  }, { passive: true });
+
   // Init langue depuis storage ou navigateur
   let initialLang = 'fr';
   try {
@@ -157,7 +172,7 @@
       initialLang = 'en';
     }
   } catch (e) { /* ignore */ }
-  if (initialLang !== 'fr') applyLang(initialLang);
+  applyLang(initialLang);
 
   // ---------- 4. Smooth scroll pour ancres ----------
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
