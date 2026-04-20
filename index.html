@@ -85,14 +85,279 @@ body::after {
   max-width: 720px;
   margin: 0 auto;
   padding: 80px 28px 60px;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 36px;
   text-align: center;
 }
+
+/* Sticky nav (apparait au scroll) */
+.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  padding: 12px 24px;
+  background: rgba(26, 15, 8, 0.78);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(244, 228, 212, 0.08);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  transform: translateY(-100%);
+  transition: transform 0.35s ease;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.site-nav.visible { transform: translateY(0); }
+.site-nav a {
+  color: var(--cream);
+  opacity: 0.72;
+  text-decoration: none;
+  transition: color 0.2s, opacity 0.2s;
+}
+.site-nav a:hover { color: var(--gold); opacity: 1; }
+@media (max-width: 600px) {
+  .site-nav { gap: 14px; padding: 10px 14px; font-size: 11px; letter-spacing: 1.5px; }
+}
+
+/* Sections */
+.section {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  padding: 60px 0 40px;
+  border-top: 1px solid rgba(244, 228, 212, 0.06);
+}
+.section:first-of-type { border-top: none; padding-top: 0; }
+.section-label {
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--copper);
+  opacity: 0.85;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+}
+.section-lead {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(16px, 2.8vw, 20px);
+  color: var(--copper-soft);
+  max-width: 580px;
+  line-height: 1.65;
+}
+
+/* About */
+.about-text {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--cream);
+  opacity: 0.88;
+  max-width: 580px;
+}
+.about-text + .about-text { margin-top: 4px; }
+
+/* Stream */
+.stream-card {
+  width: 100%;
+  max-width: 560px;
+  padding: 28px 24px;
+  border: 1px solid rgba(145, 70, 255, 0.25);
+  border-radius: 6px;
+  background: linear-gradient(135deg, rgba(145, 70, 255, 0.06), rgba(217, 119, 66, 0.04));
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.stream-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--copper-soft);
+}
+.stream-status .pulse {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #9146ff;
+  box-shadow: 0 0 0 0 rgba(145, 70, 255, 0.6);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(145, 70, 255, 0.6); }
+  70%  { box-shadow: 0 0 0 12px rgba(145, 70, 255, 0); }
+  100% { box-shadow: 0 0 0 0   rgba(145, 70, 255, 0); }
+}
+.stream-next {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-style: italic;
+  color: var(--cream);
+}
+.stream-time {
+  font-size: 14px;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+.stream-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: #9146ff;
+  color: var(--cream);
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+  margin-top: 4px;
+}
+.stream-cta:hover {
+  background: #a764ff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(145, 70, 255, 0.3);
+}
+.stream-cta svg { width: 14px; height: 14px; }
+
+/* Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+.gallery-item {
+  aspect-ratio: 3 / 4;
+  border-radius: 3px;
+  border: 1px solid rgba(244, 228, 212, 0.08);
+  background:
+    linear-gradient(135deg, rgba(217, 119, 66, 0.18) 0%, rgba(240, 201, 122, 0.08) 45%, rgba(42, 24, 16, 0.9) 100%),
+    var(--bg-warm);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: transform 0.35s ease, border-color 0.35s ease;
+}
+.gallery-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 35%, rgba(244, 228, 212, 0.12) 0%, transparent 45%);
+}
+.gallery-item::after {
+  content: 'golden hour';
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--cream);
+  opacity: 0.55;
+  text-transform: uppercase;
+}
+.gallery-item:nth-child(2)::after { content: 'lisbonne'; }
+.gallery-item:nth-child(3)::after { content: 'mode'; }
+.gallery-item:nth-child(4)::after { content: 'stream'; }
+.gallery-item:nth-child(5)::after { content: 'paris'; }
+.gallery-item:nth-child(6)::after { content: 'tejo'; }
+.gallery-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--copper);
+}
+.gallery-hint {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0.4;
+  margin-top: 10px;
+}
+@media (max-width: 600px) {
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* FAQ */
+.faq { width: 100%; max-width: 580px; }
+.faq details {
+  border-bottom: 1px solid rgba(244, 228, 212, 0.08);
+  padding: 14px 0;
+}
+.faq summary {
+  cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: var(--cream);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: '+';
+  color: var(--copper);
+  font-size: 22px;
+  transition: transform 0.2s ease;
+  line-height: 1;
+}
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p {
+  padding-top: 10px;
+  font-size: 14px;
+  color: var(--cream);
+  opacity: 0.85;
+  line-height: 1.7;
+}
+
+/* Lang toggle */
+.lang-toggle {
+  position: fixed;
+  top: 14px;
+  right: 18px;
+  z-index: 101;
+  display: flex;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+.lang-toggle button {
+  background: transparent;
+  border: 1px solid rgba(244, 228, 212, 0.2);
+  color: var(--cream);
+  padding: 6px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: inherit;
+  font-size: inherit;
+  transition: all 0.2s;
+}
+.lang-toggle button.active {
+  border-color: var(--copper);
+  color: var(--gold);
+  background: rgba(217, 119, 66, 0.08);
+}
+.lang-toggle button:hover { color: var(--gold); }
+
+/* Reveal on scroll (remplace les anims fixes) */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 .kicker {
   font-size: 12px;
@@ -225,45 +490,118 @@ body::after {
 
 .footer a:hover { color: var(--gold); border-color: var(--gold); }
 
-/* Stagger entrance animation */
+/* Stagger entrance animation (hero initial load) */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.kicker { animation: fadeUp 0.7s 0.1s both; }
-.logo { animation: fadeUp 0.8s 0.25s both; }
-.tagline { animation: fadeUp 0.7s 0.5s both; }
-.persona { animation: fadeUp 0.6s 0.7s both; }
-.coming-soon { animation: fadeUp 0.6s 0.85s both; }
-.social { animation: fadeUp 0.7s 1.0s both; }
+.hero .kicker { animation: fadeUp 0.7s 0.1s both; }
+.hero .logo { animation: fadeUp 0.8s 0.25s both; }
+.hero .tagline { animation: fadeUp 0.7s 0.5s both; }
+.hero .persona { animation: fadeUp 0.6s 0.7s both; }
+.hero .coming-soon { animation: fadeUp 0.6s 0.85s both; }
+
+/* Typing cursor sur tagline */
+.tagline .cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: var(--gold);
+  margin-left: 4px;
+  animation: blink 1.1s infinite;
+  vertical-align: middle;
+}
+@keyframes blink { 50% { opacity: 0; } }
 
 @media (max-width: 480px) {
-  .container { padding: 50px 20px 40px; gap: 28px; }
+  .container { padding: 60px 20px 40px; gap: 28px; }
   .social { grid-template-columns: 1fr; max-width: 320px; }
+  .section { padding: 40px 0 30px; gap: 18px; }
+  .lang-toggle { top: 8px; right: 10px; }
 }
 </style>
 </head>
 <body>
 
+<div class="lang-toggle" role="group" aria-label="Langue">
+  <button type="button" data-lang="fr" class="active" aria-pressed="true">FR</button>
+  <button type="button" data-lang="en" aria-pressed="false">EN</button>
+</div>
+
+<header class="site-nav" id="site-nav" aria-label="Navigation principale">
+  <a href="#hero" data-i18n="navHome">Accueil</a>
+  <a href="#about" data-i18n="navAbout">À propos</a>
+  <a href="#stream" data-i18n="navStream">Stream</a>
+  <a href="#gallery" data-i18n="navGallery">Galerie</a>
+  <a href="#social" data-i18n="navSocial">Réseaux</a>
+  <a href="#faq" data-i18n="navFaq">FAQ</a>
+</header>
+
 <div class="container">
 
-  <div class="kicker">Mannequin · Créatrice numérique</div>
+  <section class="section hero" id="hero">
+    <div class="kicker" data-i18n="kicker">Mannequin · Créatrice numérique</div>
 
-  <h1 class="logo">Zia <span class="nova">Nova</span></h1>
+    <h1 class="logo">Zia <span class="nova">Nova</span></h1>
 
-  <p class="tagline">"Parisienne à Lisbonne — la lumière du Portugal a quelque chose de différent."</p>
+    <p class="tagline" data-i18n-html="tagline">"Parisienne à Lisbonne — la lumière du Portugal a quelque chose de différent."<span class="cursor" aria-hidden="true"></span></p>
 
-  <div class="persona">
-    <span>21 ans</span>
-    <span class="dot">·</span>
-    <span>🇫🇷 → 🇵🇹</span>
-    <span class="dot">·</span>
-    <span>Mode · Golden hour · Stream FR</span>
-  </div>
+    <div class="persona">
+      <span data-i18n="persona1">21 ans</span>
+      <span class="dot">·</span>
+      <span>🇫🇷 → 🇵🇹</span>
+      <span class="dot">·</span>
+      <span data-i18n="persona2">Mode · Golden hour · Stream FR</span>
+    </div>
 
-  <div class="coming-soon">Site complet — Bientôt</div>
+    <div class="coming-soon" data-i18n="comingSoon">Site complet — Bientôt</div>
+  </section>
 
+  <section class="section reveal" id="about">
+    <div class="section-label" data-i18n="aboutLabel">À propos</div>
+    <h2 class="section-title" data-i18n="aboutTitle">Une parisienne au Tejo</h2>
+    <p class="about-text" data-i18n="aboutP1">Née à Paris, j'ai troqué le ciel gris du périphérique pour la lumière du Tage il y a quelques mois. Mannequin haute couture de formation, créatrice numérique par passion : je partage la mode, la vie portugaise et quelques escapades dorées.</p>
+    <p class="about-text" data-i18n="aboutP2">Sur Twitch, je stream en français — lifestyle, collabs, talkshow. Sur Instagram et Threads, l'esthétique golden hour au quotidien. Venez dire bonjour.</p>
+  </section>
+
+  <section class="section reveal" id="stream">
+    <div class="section-label" data-i18n="streamLabel">Twitch</div>
+    <h2 class="section-title" data-i18n="streamTitle">Live en français</h2>
+    <p class="section-lead" data-i18n="streamLead">Stream lifestyle depuis Lisbonne — mode, discussions, moments authentiques. Abonne-toi pour ne rien manquer.</p>
+    <div class="stream-card">
+      <div class="stream-status">
+        <span class="pulse" aria-hidden="true"></span>
+        <span data-i18n="streamStatus">Prochain live programmé</span>
+      </div>
+      <div class="stream-next" data-i18n="streamNext">Découverte de l'Alfama — caméra, café & papotages</div>
+      <div class="stream-time" data-i18n="streamTime">Jeudi · 20h30 (heure de Lisbonne)</div>
+      <a class="stream-cta" href="https://twitch.tv/zianovaofficielle" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
+        <span data-i18n="streamCta">Voir la chaîne</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section reveal" id="gallery">
+    <div class="section-label" data-i18n="galleryLabel">Galerie</div>
+    <h2 class="section-title" data-i18n="galleryTitle">Moments golden hour</h2>
+    <p class="section-lead" data-i18n="galleryLead">Aperçus de Lisbonne, shootings mode et coulisses du quotidien. Les clichés complets suivent le lancement officiel du site.</p>
+    <div class="gallery" aria-hidden="true">
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+    </div>
+    <div class="gallery-hint" data-i18n="galleryHint">Photos bientôt · Instagram : @zia.nova7</div>
+  </section>
+
+  <section class="section reveal" id="social">
+    <div class="section-label" data-i18n="socialLabel">Réseaux</div>
+    <h2 class="section-title" data-i18n="socialTitle">Là où je suis</h2>
+    <p class="section-lead" data-i18n="socialLead">Chaque plateforme, son ambiance. Choisis la tienne.</p>
   <nav class="social">
     <a class="twitch" href="https://twitch.tv/zianovaofficielle" target="_blank" rel="noopener">
       <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
@@ -306,6 +644,30 @@ body::after {
       Linktree
     </a>
   </nav>
+  </section>
+
+  <section class="section reveal" id="faq">
+    <div class="section-label" data-i18n="faqLabel">FAQ</div>
+    <h2 class="section-title" data-i18n="faqTitle">Questions fréquentes</h2>
+    <div class="faq">
+      <details>
+        <summary data-i18n="faq1Q">Tu streams en quelle langue ?</summary>
+        <p data-i18n="faq1A">Principalement en français. Il m'arrive de faire quelques bouts en anglais pour le chat international, mais le cœur du stream reste francophone.</p>
+      </details>
+      <details>
+        <summary data-i18n="faq2Q">Tu fais quoi en live ?</summary>
+        <p data-i18n="faq2A">Lifestyle, balades à Lisbonne, préparation de shootings, playlists chill, papotages avec le chat. Rien de scripté — c'est honnête et golden hour.</p>
+      </details>
+      <details>
+        <summary data-i18n="faq3Q">Tu acceptes les collaborations ?</summary>
+        <p data-i18n="faq3A">Oui, pour les marques mode, beauté et lifestyle alignées avec l'esthétique. Le meilleur moyen : contact@zianova.net avec un brief détaillé.</p>
+      </details>
+      <details>
+        <summary data-i18n="faq4Q">Tu es vraiment parisienne ?</summary>
+        <p data-i18n="faq4A">Oui — 21 ans, née à Paris, expatriée à Lisbonne depuis quelques mois. Le Tage et les azulejos m'ont convaincue de rester un moment.</p>
+      </details>
+    </div>
+  </section>
 
   <footer class="footer">
     © 2026 Zia Nova ·
@@ -313,6 +675,8 @@ body::after {
   </footer>
 
 </div>
+
+<script src="/app.js" defer></script>
 
 </body>
 </html>
