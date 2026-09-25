@@ -55,7 +55,7 @@
       navGalleryShort: 'Photos', navSocialShort: 'Liens', navFaqShort: 'FAQ',
       aboutLabel: 'À propos',
       aboutTitle: 'De Montréal au reste du monde',
-      aboutP1: "Née à Montréal, 21 ans, mannequin freelance haute couture. Je viens de finir une tournée internationale de trois mois — Paris, Milan, New York, Lisbonne — et je reprends le quotidien d'ici, entre shootings, voyages et golden hour.",
+      aboutP1: "Née à Trois-Rivières, à Montréal depuis mes 18 ans, 21 ans, mannequin freelance. Je viens de finir une tournée internationale — Paris, Milan, New York — et je reprends le quotidien d'ici, au Mile End, entre shootings, voyages et golden hour.",
       aboutP2: "Sur Twitch, je stream parfois en français parfois en anglais — lifestyle, mode, voyage. Sur Instagram et Threads, l'esthétique au quotidien. Viens dire allô.",
       streamLabel: 'Twitch',
       streamTitle: 'Live FR / EN',
@@ -78,7 +78,7 @@
       faq3Q: 'Tu acceptes les collaborations ?',
       faq3A: 'Oui, pour les marques mode, beauté et lifestyle alignées avec l\'esthétique. Le meilleur moyen : contact@zianova.net avec un brief détaillé.',
       faq4Q: 'Tu es vraiment québécoise ?',
-      faq4A: "Oui — 21 ans, née à Montréal, base à Montréal entre les voyages. La tournée internationale, c'est pour le boulot — la maison reste icitte."
+      faq4A: "Oui — 21 ans, née à Trois-Rivières, installée au Mile End à Montréal depuis mes 18 ans. La tournée internationale, c'est pour le boulot — la maison reste icitte."
     },
     en: {
       kicker: 'Model · Digital creator',
@@ -92,7 +92,7 @@
       navGalleryShort: 'Photos', navSocialShort: 'Links', navFaqShort: 'FAQ',
       aboutLabel: 'About',
       aboutTitle: 'From Montréal to the rest of the world',
-      aboutP1: "Born in Montréal, 21, freelance haute couture model. I just wrapped a three-month international tour — Paris, Milan, New York, Lisbon — and I'm back home between shoots, travels and golden hour.",
+      aboutP1: "Born in Trois-Rivières, in Montréal since I was 18 — 21, freelance model. I just wrapped an international tour — Paris, Milan, New York — and I'm back home in the Mile End, between shoots, travels and golden hour.",
       aboutP2: "On Twitch I stream sometimes in French sometimes in English — lifestyle, fashion, travel. On Instagram and Threads, daily aesthetic. Come say hi.",
       streamLabel: 'Twitch',
       streamTitle: 'Live FR / EN',
@@ -115,7 +115,7 @@
       faq3Q: 'Do you accept collaborations?',
       faq3A: 'Yes — fashion, beauty and lifestyle brands that match the aesthetic. Best way: contact@zianova.net with a detailed brief.',
       faq4Q: 'Are you really Quebecker?',
-      faq4A: "Yes — 21, born in Montréal, based here between travels. International touring is for work — home stays in QC."
+      faq4A: "Yes — 21, born in Trois-Rivières, living in Montréal's Mile End since I was 18. International touring is for work — home stays in QC."
     }
   };
 
