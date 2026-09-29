@@ -45,7 +45,7 @@
   const I18N = {
     fr: {
       kicker: 'Mannequin · Créatrice numérique',
-      tagline: '"Mannequin québécoise · en tournée internationale — Montréal reste la base, le monde fait le reste."',
+      tagline: '"Mannequin québécoise · en tournée internationale — Montréal reste la base, le monde fait le\u00a0reste."',
       persona1: '21 ans',
       persona2: 'Mode · Voyage · Stream FR',
       comingSoon: 'Site complet — Bientôt',
@@ -83,7 +83,7 @@
     },
     en: {
       kicker: 'Model · Digital creator',
-      tagline: '"Quebec model based in Montreal · just back from an international tour — home is here, the world does the rest."',
+      tagline: '"Quebec model based in Montreal · just back from an international tour — home is here, the world does the\u00a0rest."',
       persona1: '21 years old',
       persona2: 'Fashion · Travel · Stream FR',
       comingSoon: 'Full site — Coming soon',
