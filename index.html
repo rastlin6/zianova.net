@@ -276,7 +276,9 @@ body::after {
   background: radial-gradient(ellipse at 50% 35%, rgba(244, 228, 212, 0.12) 0%, transparent 45%);
 }
 .gallery-item::after {
-  content: 'golden hour';
+  content: 'paris';
+  z-index: 2;
+  text-shadow: 0 1px 6px rgba(0,0,0,.7);
   position: absolute;
   bottom: 12px;
   left: 12px;
@@ -286,11 +288,13 @@ body::after {
   opacity: 0.55;
   text-transform: uppercase;
 }
-.gallery-item:nth-child(2)::after { content: 'montréal'; }
-.gallery-item:nth-child(3)::after { content: 'mode'; }
-.gallery-item:nth-child(4)::after { content: 'paris'; }
-.gallery-item:nth-child(5)::after { content: 'milano'; }
-.gallery-item:nth-child(6)::after { content: 'new york'; }
+.gallery-item:nth-child(2)::after { content: 'milano'; }
+.gallery-item:nth-child(3)::after { content: 'new york'; }
+.gallery-item:nth-child(4)::after { content: 'montréal'; }
+.gallery-item:nth-child(5)::after { content: 'mile end'; }
+.gallery-item:nth-child(6)::after { content: 'chez moi'; }
+.gallery-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .92; transition: opacity .35s ease; }
+.gallery-item:hover img { opacity: 1; }
 .gallery-item:hover {
   transform: translateY(-3px);
   border-color: var(--copper);
@@ -614,15 +618,15 @@ body::after {
     <div class="section-label" data-i18n="galleryLabel">Galerie</div>
     <h2 class="section-title" data-i18n="galleryTitle">Moments en tournée</h2>
     <p class="section-lead" data-i18n="galleryLead">Aperçus de Montréal et des escales internationales — shootings mode, coulisses, daily mood. Les clichés complets suivent le lancement officiel du site.</p>
-    <div class="gallery" aria-hidden="true">
-      <div class="gallery-item"></div>
-      <div class="gallery-item"></div>
-      <div class="gallery-item"></div>
-      <div class="gallery-item"></div>
-      <div class="gallery-item"></div>
-      <div class="gallery-item"></div>
+    <div class="gallery">
+      <div class="gallery-item"><img src="img/galerie_1.jpg" alt="Zia à Paris" loading="lazy" width="900" height="900"></div>
+      <div class="gallery-item"><img src="img/galerie_2.jpg" alt="Zia en défilé à Milan" loading="lazy" width="900" height="900"></div>
+      <div class="gallery-item"><img src="img/galerie_3.jpg" alt="Zia à New York" loading="lazy" width="900" height="900"></div>
+      <div class="gallery-item"><img src="img/galerie_4.jpg" alt="Zia, selfie miroir à Montréal" loading="lazy" width="900" height="900"></div>
+      <div class="gallery-item"><img src="img/galerie_5.jpg" alt="Zia à vélo dans le Mile End" loading="lazy" width="900" height="900"></div>
+      <div class="gallery-item"><img src="img/galerie_6.jpg" alt="Zia chez elle" loading="lazy" width="900" height="900"></div>
     </div>
-    <div class="gallery-hint" data-i18n="galleryHint">Photos bientôt · Instagram : @zia.nova7</div>
+    <div class="gallery-hint" data-i18n="galleryHint">Plus de photos sur Instagram : @zia.nova7</div>
   </section>
 
   <section class="section reveal" id="social">
